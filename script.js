@@ -5,7 +5,7 @@
 const CONFIG = {
     negocio: "El Toscano",
     whatsapp: "573217054190",
-    sedes: ["Sede Principal"],
+    sedes: ["Sombrilla", "Lomas de Granada", "Obando"],
     metodosPago: ["💳 Nequi", "💵 Efectivo", "🔑 Bre-B"],
     horario: { abre: 11, cierra: 22 }
 };
@@ -502,9 +502,9 @@ function generarYEnviarMensaje() {
     if (tipoEntrega === 'domicilio') {
         mensaje += `📍 Dirección: ${formularioDatos.direccion}, Barrio ${formularioDatos.barrio}\n`;
         if (formularioDatos.indicacion && formularioDatos.indicacion.trim()) {
-            mensaje += `📌 Indicación: ${formularioDatos.indicacion}\n`;
+            mensaje += `📌 Indicación de dirección: ${formularioDatos.indicacion}\n`;
         }
-        mensaje += `⚠️ Domicilio: valor cobrado aparte\n`;
+        mensaje += `⚠️ Domicilio: Valor cobrado aparte\n`;
     }
 
     mensaje += `🏪 Sede: ${formularioDatos.sede}\n`;
