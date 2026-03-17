@@ -4,8 +4,8 @@
 
 const CONFIG = {
     negocio: "El Toscano",
-    whatsapp: "573217054190",
-    sedes: ["Sombrilla", "Lomas de Granada", "Obando"],
+    whatsapp: "573145476668",
+    sedes: ["La Sombrilla", "Lomas de Granada", "Obando"],
     metodosPago: ["💳 Nequi", "💵 Efectivo", "🔑 Bre-B"],
     horario: { abre: 11, cierra: 22 }
 };
@@ -341,7 +341,7 @@ function renderizarCarrito() {
     html += `</div>`;
 
     if (tipoEntrega === 'domicilio') {
-        html += `<div class="banner-domicilio visible">⚠️ El valor del domicilio NO está incluido en el total. El costo del domicilio se cobra aparte.</div>`;
+        html += `<div class="banner-domicilio visible">⚠️Ten en cuenta: El valor del domicilio NO está incluido en el total. El costo del domicilio se cobra aparte.</div>`;
     }
 
     html += `<div class="form-group">`;
@@ -391,7 +391,7 @@ function renderizarCarrito() {
 
     html += `<div class="form-group">`;
     html += `<label class="form-label">📝 ¿Alguna solicitud especial? <span style="font-weight:400;color:var(--color-gris-claro)">(opcional)</span></label>`;
-    html += `<textarea class="form-input" id="formObservaciones" placeholder="Ej: sin ají, salsa aparte, bien cocido..." rows="2" style="resize:none" onchange="actualizarFormulario('observaciones', this.value)">${formularioDatos.observaciones}</textarea>`;
+    html += `<textarea class="form-input" id="formObservaciones" placeholder="Ej: Todas las salsas, solo ajo, llamar cuando esté afuera" rows="2" style="resize:none" onchange="actualizarFormulario('observaciones', this.value)">${formularioDatos.observaciones}</textarea>`;
     html += `</div>`;
     html += `</div>`;
 
@@ -516,7 +516,7 @@ function generarYEnviarMensaje() {
         mensaje += `- ${item.cantidad}x ${item.nombre}: ${formatearPrecio(item.precio * item.cantidad)}\n`;
     });
 
-    mensaje += `\n💰 *Total: ${formatearPrecio(total)}*`;
+    mensaje += `\n💰 *Total(sin domicilio): ${formatearPrecio(total)}*`;
 
     if (formularioDatos.observaciones && formularioDatos.observaciones.trim()) {
         mensaje += `\n📝 *Observaciones:* ${formularioDatos.observaciones}`;
