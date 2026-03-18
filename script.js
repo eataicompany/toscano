@@ -171,6 +171,10 @@ function actualizarEstadoHorario() {
 }
 
 function abrirCarrito() {
+    gtag('event', 'abrir_carrito', {
+        event_category: 'interaccion',
+        event_label: 'Usuario abrió carrito'
+    });
     carritoDrawer.classList.add("visible");
     overlay.style.display = "block";
 }
@@ -261,6 +265,12 @@ function toggleIngredientes(btn) {
 
 function agregarAlCarrito(id, nombre, precio) {
     const existente = carrito.find(item => item.id === id);
+      // EVENTO CORRECTO 👇
+    gtag('event', 'add_to_cart', {
+        event_category: 'ecommerce',
+        event_label: nombre,
+        value: precio
+    });
     if (existente) {
         existente.cantidad++;
     } else {
@@ -481,6 +491,10 @@ function validarFormulario() {
 }
 
 function enviarPedidoWhatsApp() {
+    gtag('event', 'click_pedir', {
+        event_category: 'pedido',
+        event_label: 'Boton Pedir Toscano'
+    });
     if (!validarFormulario()) return;
 
     if (!estaAbierto()) {
@@ -523,6 +537,11 @@ function generarYEnviarMensaje() {
     }
 
     const enlace = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+    gtag('event', 'pedido_enviado', {
+        event_category: 'conversion',
+        event_label: 'Pedido WhatsApp',
+        value: total
+    });
     window.open(enlace, '_blank');
 
     // Limpiar
