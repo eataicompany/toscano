@@ -56,15 +56,17 @@ body{
     min-height:100vh;
 }
 
-.top-bar{
-    position:fixed;
-    top:0;
+.top-bar {
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    z-index:1000;
-    background:rgba(26,18,11,0.95);
-    backdrop-filter:blur(12px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.35);
+    z-index: 1000;
+    background: rgba(26, 18, 11, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+    /* 👇 Reducimos al máximo el padding de la barra contenedora */
+    padding: 4px 0; 
 }
 
 body::before{
@@ -95,26 +97,28 @@ header {
     z-index: 500;
 }
 
+.header-bar {
+    display: flex !important;
+    flex-direction: row !important; /* Logo a la izquierda */
+    align-items: center;
+    padding: 0 12px;
+    gap: 10px;
+    width: 100%;
+}
+
 /* CONTENEDOR DEL LOGO */
 .header-logo {
-    grid-column: 1;
-    grid-row: 1;
-
+    flex-shrink: 0; /* Evita que el logo se encoja */
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-/* LOGO PRO */
 /* LOGO PRO */
 .header-logo img {
-    height: 55px;
+    height: 45px; /* Un poco más pequeño ayuda a compactar la altura total */
     width: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    transition: transform 0.2s ease;
+    border-radius: 8px;
 }
-
 /* micro interacción */
 .header-logo img:hover {
     transform: scale(1.05);
@@ -140,59 +144,89 @@ header {
 }
 
 .header-status.abierto {
-    background-color: rgba(39, 174, 96, 0.2);
+    background: rgba(39, 174, 96, 0.15);
     color: #27ae60;
 }
 
 .header-status.cerrado {
-    background-color: rgba(192, 57, 43, 0.2);
-    color: #c0392b;
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
 }
 
-/* BANNER DE CIERRE */
-.banner-cerrado {
-    background-color: var(--color-rojo);
-    color: var(--color-blanco);
-    text-align: center;
-    padding: 1rem;
+.status-floating {
+    position: fixed;
+    top: 80px; /* 👈 ajusta según tu header */
+    left: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
     font-weight: 600;
-    display: none;
+
+    z-index: 999;
+
+    backdrop-filter: blur(10px);
 }
 
-.banner-cerrado.visible {
-    display: block;
+/* 🟢 ABIERTO */
+.status-floating.abierto {
+    background: rgba(39, 174, 96, 0.15);
+    color: #27ae60;
 }
+
+/* 🔴 CERRADO */
+.status-floating.cerrado {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+}
+/* BANNER DE CIERRE */
 
 /* MAIN CONTENT */
 main {
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    padding-bottom: 80px;
-    margin-top: 120px;
+    /* 👇 Este valor debe ser lo justo para que no se tape con la barra fija */
+    margin-top: 75px; 
+    padding: 0 15px;
 }
 
 .titulo-principal {
-    font-family: var(--font-titulo);
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    position: -webkit-sticky;
+    
+    top: 65px; 
+    z-index: 100;
+
+    /* 👇 Eliminamos el degradado y lo dejamos transparente 👇 */
+    background: transparent !important;
+    
+    /* Añadimos un sombreado al texto para que no se pierda 
+       cuando los productos pasen por detrás */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0,0,0,0.5);
+
+    margin: 0;
+    padding: 10px 0; 
     text-align: center;
-    color: var(--color-dorado);
+    font-size: 1.6rem;
+    font-family: var(--font-title);
+    color: var(--color-accent);
 }
 
 /* TABS */
-.tabs-container{
-    grid-column:2;
-    grid-row:1;
-    display:flex;
-    gap:8px;
-    justify-content:flex-start;
-    overflow-x:auto;
+.tabs-container {
+    flex-grow: 1; /* Que las pestañas ocupen el resto del espacio */
+    display: flex;
+    gap: 8px;
+    overflow-x: auto; /* Scroll horizontal si hay muchas categorías */
+    white-space: nowrap; /* Evita que las categorías se bajen a otra línea */
+    scrollbar-width: none; /* Oculta scroll en Firefox */
 }
 
 .tabs-container::-webkit-scrollbar {
-    height: 4px;
+    display: none; /* Oculta scroll en Chrome/Safari */
 }
 
 .tabs-container::-webkit-scrollbar-thumb {
@@ -1085,4 +1119,16 @@ select{
 
     box-shadow:0 0 6px rgba(243,156,18,0.5);
 
+}.input-error {
+    border: 2px solid #ff4d4f !important;
+}
+
+.error-msg {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.deshabilitado {
+    opacity: 0.5;
 }

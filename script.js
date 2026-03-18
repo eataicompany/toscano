@@ -7,7 +7,7 @@ const CONFIG = {
     whatsapp: "573145476668",
     sedes: ["La Sombrilla", "Lomas de Granada", "Obando"],
     metodosPago: ["💳 Nequi", "💵 Efectivo", "🔑 Bre-B"],
-    horario: { abre: 11, cierra: 22 }
+    horario: { abre: 17, cierra: 23 }
 };
 
 const MENU = {
@@ -117,9 +117,9 @@ let formularioDatos = {
     direccion: "",
     barrio: "",
     indicacion: "",
-    observaciones: "",
     sede: CONFIG.sedes[0],
-    metodo_pago: CONFIG.metodosPago[0]
+    metodo_pago: CONFIG.metodosPago[0],
+    observaciones: ""
 };
 let intentarEnviarCerrado = false;
 
@@ -157,17 +157,32 @@ function formatearPrecio(precio) {
 function estaAbierto() {
     const ahora = new Date();
     const hora = ahora.getHours();
+
     return hora >= CONFIG.horario.abre && hora < CONFIG.horario.cierra;
 }
 
 function actualizarEstadoHorario() {
     const abierto = estaAbierto();
-    const emoji = abierto ? "🟢" : "⛔";
-    const texto = abierto ? "Abierto para pedidos" : "Cerrado";
-    document.getElementById("statusEmoji").textContent = emoji;
-    document.getElementById("statusTexto").textContent = texto;
+
+    const status = document.getElementById("statusHorario");
+    const emoji = document.getElementById("statusEmoji");
+    const texto = document.getElementById("statusTexto");
+
+    if (!status || !emoji || !texto) return;
+
+    if (abierto) {
+        emoji.textContent = "🟢";
+        texto.textContent = "Abierto ahora";
+        status.classList.remove("cerrado");
+        status.classList.add("abierto");
+    } else {
+        emoji.textContent = "⛔";
+        texto.textContent = "Cerrado. Abrimos 5pm hasta 11pm";
+        status.classList.remove("abierto");
+        status.classList.add("cerrado");
+    }
+
     bannerCerrado.classList.toggle("visible", !abierto);
-    btnPedir.disabled = !abierto;
 }
 
 function abrirCarrito() {
@@ -357,22 +372,26 @@ function renderizarCarrito() {
     html += `<div class="form-group">`;
     html += `<label class="form-label">Nombre completo<span class="requerido">*</span></label>`;
     html += `<input type="text" class="form-input" id="formNombre" placeholder="Tu nombre" value="${formularioDatos.nombre}" oninput="actualizarFormulario('nombre', this.value);validarCampos()">`;
+    html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
     html += `</div>`;
 
     html += `<div class="form-group">`;
-    html += `<label class="form-label">Teléfono<span class="requerido">*</span></label>`;
+    html += `<label class="form-label">Celular<span class="requerido">*</span></label>`;
     html += `<input type="tel" class="form-input" id="formTelefono" placeholder="3001234567" maxlength="10" inputmode="numeric" value="${formularioDatos.telefono}" oninput="filtrarTelefono(this)">`;
+    html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
     html += `</div>`;
 
     if (tipoEntrega === 'domicilio') {
         html += `<div class="form-group">`;
         html += `<label class="form-label">Dirección<span class="requerido">*</span></label>`;
         html += `<input type="text" class="form-input" id="formDireccion" placeholder="Ej: Calle 5 # 8-45" value="${formularioDatos.direccion}" oninput="actualizarFormulario('direccion', this.value);validarCampos()">`;
+        html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
         html += `</div>`;
 
         html += `<div class="form-group">`;
         html += `<label class="form-label">Barrio<span class="requerido">*</span></label>`;
         html += `<input type="text" class="form-input" id="formBarrio" placeholder="Tu barrio" value="${formularioDatos.barrio}" oninput="actualizarFormulario('barrio', this.value);validarCampos()">`;
+        html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
         html += `</div>`;
 
         html += `<div class="form-group">`;
@@ -420,38 +439,99 @@ function actualizarFormulario(campo, valor) {
 }
 
 function filtrarTelefono(input) {
-    input.value = input.value.replace(/[^0-9]/g, '').slice(0, 10);
-    actualizarFormulario('telefono', input.value);
-    // Visual: verde si 10 dígitos, rojo si menos
-    if (input.value.length > 0) {
-        input.style.borderColor = input.value.length === 10 ? 'var(--color-verde)' : 'var(--color-rojo)';
-    } else {
-        input.style.borderColor = '';
-    }
+    // Deja solo números
+    let valor = input.value.replace(/\D/g, '');
+    // Limita a 10 dígitos
+    if (valor.length > 10) valor = valor.slice(0, 10);
+    
+    input.value = valor;
+    // Actualizamos el objeto de datos
+    formularioDatos.telefono = valor;
+    
+    // Ejecutamos la validación para que el error desaparezca apenas llegue a 10
     validarCampos();
 }
 
 function validarCampos() {
-    const btn = document.getElementById('btnPedir');
-    if (!btn) return;
+    const esRecoger = tipoEntrega === "recoger";
+    
+    // 1. Definimos las reglas
+    const nombreOk = formularioDatos.nombre.trim().length > 2;
+    const telefonoOk = formularioDatos.telefono.trim().length === 10;
+    const direccionOk = esRecoger ? true : (formularioDatos.direccion.trim().length > 3);
+    const barrioOk = esRecoger ? true : (formularioDatos.barrio.trim().length > 2);
 
-    const nombre = (formularioDatos.nombre || '').trim();
-    const telefono = (formularioDatos.telefono || '').trim();
-    const telOk = /^[0-9]{10}$/.test(telefono);
-    const sede = (formularioDatos.sede || '').trim();
-    const metodo = (formularioDatos.metodo_pago || '').trim();
+    // 2. Función interna para mostrar/ocultar el error visualmente
+    const actualizarVisual = (idInput, esValido, mensaje) => {
+        const input = document.getElementById(idInput);
+        if (!input) return;
+        const contenedor = input.parentElement;
+        const errorSpan = contenedor.querySelector('.error-msg');
 
-    let ok = nombre !== '' && telOk && sede !== '' && metodo !== '';
+        // Solo mostramos error si el usuario ya escribió algo o si intentó avanzar
+        if (formularioDatos[idInput.replace('form', '').toLowerCase()] !== "" || !esValido) {
+            if (!esValido) {
+                input.classList.add('input-error');
+                if (errorSpan) errorSpan.innerText = mensaje;
+            } else {
+                input.classList.remove('input-error');
+                if (errorSpan) errorSpan.innerText = "";
+            }
+        }
+    };
 
-    if (tipoEntrega === 'domicilio') {
-        const dir = (formularioDatos.direccion || '').trim();
-        const barrio = (formularioDatos.barrio || '').trim();
-        ok = ok && dir !== '' && barrio !== '';
+    // 3. Aplicamos la validación visual a cada campo
+    actualizarVisual('formNombre', nombreOk, "Ingresa tu nombre completo");
+    actualizarVisual('formTelefono', telefonoOk, "Ingresa los 10 dígitos de tu celular");
+    
+    if (!esRecoger) {
+        actualizarVisual('formDireccion', direccionOk, "Ingresa una dirección válida");
+        actualizarVisual('formBarrio', barrioOk, "Ingresa tu barrio");
     }
 
-    btn.disabled = !ok;
-    btn.style.opacity = ok ? '1' : '0.5';
-    btn.style.cursor = ok ? 'pointer' : 'not-allowed';
+    // 4. Lógica del botón: Solo aparece si TODO está perfecto
+    const todoValido = nombreOk && telefonoOk && direccionOk && barrioOk;
+    
+    if (todoValido) {
+        btnPedir.classList.remove("oculto");
+        btnPedir.style.display = "block"; // Aseguramos que se vea
+    } else {
+        btnPedir.classList.add("oculto");
+        btnPedir.style.display = "none";
+    }
+}
+
+function marcarError(id, mensaje) {
+    const input = document.getElementById(id);
+
+    input.classList.add("input-error");
+
+    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains("error-msg")) {
+        const error = document.createElement("small");
+        error.className = "error-msg";
+        error.innerText = mensaje;
+        input.parentNode.appendChild(error);
+    }
+}
+
+function limpiarError(id) {
+    const input = document.getElementById(id);
+
+    input.classList.remove("input-error");
+
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains("error-msg")) {
+        input.nextElementSibling.remove();
+    }
+}
+
+function toggleBoton(valido) {
+    if (valido) {
+        btnPedir.disabled = false;
+        btnPedir.classList.remove("deshabilitado");
+    } else {
+        btnPedir.disabled = true;
+        btnPedir.classList.add("deshabilitado");
+    }
 }
 
 function cambiarCantidad(id, cambio) {
@@ -476,17 +556,53 @@ function eliminarDelCarrito(id) {
 // ═══════════════════════════════════════════════════════════════
 
 function validarFormulario() {
-    const requeridos = ['nombre', 'telefono', 'sede', 'metodo_pago'];
-    if (tipoEntrega === 'domicilio') {
-        requeridos.push('direccion', 'barrio');
+
+    let errores = [];
+
+    const nombre = formularioDatos.nombre?.trim() || "";
+    const telefono = formularioDatos.telefono?.trim() || "";
+    const sede = formularioDatos.sede?.trim() || "";
+    const metodo_pago = formularioDatos.metodo_pago?.trim() || "";
+    const direccion = formularioDatos.direccion?.trim() || "";
+    const barrio = formularioDatos.barrio?.trim() || "";
+
+    // VALIDACIONES BÁSICAS
+    if (!nombre) {
+        errores.push("El nombre es obligatorio");
     }
 
-    for (let campo of requeridos) {
-        if (!formularioDatos[campo] || formularioDatos[campo].trim() === '') {
-            alert(`Por favor completa el campo: ${campo}`);
-            return false;
+    if (!telefono) {
+        errores.push("El número de teléfono es obligatorio");
+    } else if (!/^\d{10}$/.test(telefono)) {
+        errores.push("El número debe tener exactamente 10 dígitos");
+    }
+
+    if (!sede) {
+        errores.push("Debes seleccionar una sede");
+    }
+
+    if (!metodo_pago) {
+        errores.push("Debes seleccionar un método de pago");
+    }
+
+    // VALIDACIÓN SI ES DOMICILIO
+    if (tipoEntrega === 'domicilio') {
+
+        if (!direccion) {
+            errores.push("La dirección es obligatoria");
+        }
+
+        if (!barrio) {
+            errores.push("El barrio es obligatorio");
         }
     }
+
+    // MOSTRAR ERRORES
+    if (errores.length > 0) {
+        alert("⚠️ Por favor corrige lo siguiente:\n\n- " + errores.join("\n- "));
+        return false;
+    }
+
     return true;
 }
 
@@ -508,54 +624,56 @@ function enviarPedidoWhatsApp() {
 }
 
 function generarYEnviarMensaje() {
-    let mensaje = "🛵 *Nuevo pedido - El Toscano*\n";
-    mensaje += `👤 Cliente: ${formularioDatos.nombre}\n`;
-    mensaje += `📞 Teléfono: ${formularioDatos.telefono}\n`;
-    mensaje += `🚀 Entrega: ${tipoEntrega === 'domicilio' ? 'Domicilio' : 'Recoger en punto'}\n`;
-
-    if (tipoEntrega === 'domicilio') {
-        mensaje += `📍 Dirección: ${formularioDatos.direccion}, Barrio ${formularioDatos.barrio}\n`;
-        if (formularioDatos.indicacion && formularioDatos.indicacion.trim()) {
-            mensaje += `📌 Indicación de dirección: ${formularioDatos.indicacion}\n`;
-        }
-        mensaje += `⚠️ Domicilio: Valor cobrado aparte\n`;
-    }
-
-    mensaje += `🏪 Sede: ${formularioDatos.sede}\n`;
-    mensaje += `💳 Pago: ${formularioDatos.metodo_pago}\n\n`;
-
-    mensaje += `🧾 *Pedido:*\n`;
     const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    
+    let texto = `*🍔 Nuevo Pedido - ${CONFIG.negocio}*\n`;
+    texto += `------------------------------\n`;
+    
     carrito.forEach(item => {
-        mensaje += `- ${item.cantidad}x ${item.nombre}: ${formatearPrecio(item.precio * item.cantidad)}\n`;
+        texto += `• ${item.cantidad}x ${item.nombre} ($${(item.precio * item.cantidad).toLocaleString()})\n`;
     });
-
-    mensaje += `\n💰 *Total(sin domicilio): ${formatearPrecio(total)}*`;
-
-    if (formularioDatos.observaciones && formularioDatos.observaciones.trim()) {
-        mensaje += `\n📝 *Observaciones:* ${formularioDatos.observaciones}`;
+    
+    texto += `------------------------------\n`;
+    texto += `*Total:* $${total.toLocaleString()}\n\n`;
+    
+    texto += `*Datos del Cliente:*\n`;
+    texto += `👤 Nombre: ${formularioDatos.nombre}\n`;
+    texto += `📞 Teléfono: ${formularioDatos.telefono}\n`;
+    
+    if (tipoEntrega === "domicilio") {
+        texto += `📍 Dirección: ${formularioDatos.direccion}\n`;
+        texto += `🏘️ Barrio: ${formularioDatos.barrio}\n`;
+        if (formularioDatos.indicacion) {
+            texto += `📝 Indicación: ${formularioDatos.indicacion}\n`;
+        }
+    } else {
+        texto += `🏪 Recoge en sede: ${formularioDatos.sede}\n`;
     }
 
-    const enlace = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
-    gtag('event', 'pedido_enviado', {
-        event_category: 'conversion',
-        event_label: 'Pedido WhatsApp',
-        value: total
-    });
+    if (formularioDatos.observaciones) {
+        texto += `🍳 Solicitud Especial: ${formularioDatos.observaciones}\n`;
+    }
+
+    texto += `💳 Pago: ${formularioDatos.metodo_pago}\n`;
+    texto += `🚚 Entrega: ${tipoEntrega === "domicilio" ? "Domicilio" : "Recoger en punto"}`;
+
+    const enlace = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
     window.open(enlace, '_blank');
 
-    // Limpiar
+    // ⚠️ REINICIO CORRECTO PARA EVITAR UNDEFINED
     carrito = [];
     formularioDatos = {
         nombre: "",
         telefono: "",
         direccion: "",
         barrio: "",
+        indicacion: "",    // Limpio
         sede: CONFIG.sedes[0],
-        metodo_pago: CONFIG.metodosPago[0]
+        metodo_pago: CONFIG.metodosPago[0],
+        observaciones: ""  // Limpio
     };
     tipoEntrega = "domicilio";
-    actualizarCarrito();
+    renderizarCarrito(); // Esto vuelve a dibujar el carrito vacío
     cerrarCarrito();
 }
 
