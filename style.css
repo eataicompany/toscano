@@ -259,12 +259,22 @@ main {
 }
 
 /* GRID DE PRODUCTOS */
+/* GRID DE PRODUCTOS MODERNO (2 columnas en móvil) */
 .productos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    /* Por defecto: 2 columnas iguales */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.75rem; /* Espacio más pequeño para que quepan bien */
     margin-bottom: 2rem;
     scroll-margin-top: 180px;
+}
+
+/* Ajuste para pantallas más grandes (Tablets y PC) */
+@media (min-width: 768px) {
+    .productos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
 }
 
 .producto-card{
@@ -298,13 +308,40 @@ main {
     100%{background-position:200%}
 }
 
-.producto-imagen{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    display:block;
-    border-radius:18px 18px 0 0;
-    transition:transform 0.6s ease;
+/* Ajuste de la imagen para que no ocupe tanto espacio vertical en móvil */
+.producto-imagen {
+    width: 100%;
+    height: 150px; /* Reducimos de 200px a 150px para móviles */
+    object-fit: cover;
+    display: block;
+    border-radius: 18px 18px 0 0;
+}
+
+@media (min-width: 768px) {
+    .producto-imagen {
+        height: 200px; /* En PC vuelve a su tamaño original */
+    }
+}
+
+/* Hacer los textos un poco más pequeños en móvil */
+@media (max-width: 480px) {
+    .producto-contenido {
+        padding: 0.75rem; /* Menos padding interno */
+    }
+    .producto-nombre {
+        font-size: 0.95rem; /* Nombre un poco más pequeño */
+    }
+    .producto-precio {
+        font-size: 0.9rem;
+    }
+    .btn-agregar {
+        padding: 10px; /* Botón más compacto */
+        font-size: 0.85rem;
+    }
+    .btn-ingredientes {
+        padding: 6px;
+        font-size: 0.75rem;
+    }
 }
 
 .producto-card:hover .producto-imagen{
