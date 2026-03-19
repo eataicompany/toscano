@@ -6,8 +6,8 @@ const CONFIG = {
     negocio: "El Toscano",
     whatsapp: "573145476668",
     sedes: ["La Sombrilla", "Lomas de Granada", "Obando"],
-    metodosPago: ["💳 Nequi", "💵 Efectivo", "🔑 Bre-B"],
-    horario: { abre: 17, cierra: 23 }
+    metodosPago: ["💳 Por nequi", "💵 En efectivo", "🔑 Por Bre-B"],
+    horario: { abre: 19, cierra: 23 }
 };
 
 const MENU = {
@@ -377,7 +377,7 @@ function renderizarCarrito() {
 
     html += `<div class="form-group">`;
     html += `<label class="form-label">Celular<span class="requerido">*</span></label>`;
-    html += `<input type="tel" class="form-input" id="formTelefono" placeholder="3001234567" maxlength="10" inputmode="numeric" value="${formularioDatos.telefono}" oninput="filtrarTelefono(this)">`;
+    html += `<input type="tel" class="form-input" id="formTelefono" placeholder="3126660512" maxlength="10" inputmode="numeric" value="${formularioDatos.telefono}" oninput="filtrarTelefono(this)">`;
     html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
     html += `</div>`;
 
@@ -389,19 +389,19 @@ function renderizarCarrito() {
         html += `</div>`;
 
         html += `<div class="form-group">`;
+        html += `<label class="form-label">📌 Indicación especial de dirección <span style="font-weight:400;color:var(--color-gris-claro)">(opcional)</span></label>`;
+        html += `<input type="text" class="form-input" id="formIndicacion" placeholder="Ej: casa amarilla, 2do piso, callejón..." value="${formularioDatos.indicacion}" onchange="actualizarFormulario('indicacion', this.value)">`;
+        html += `</div>`;
+
+        html += `<div class="form-group">`;
         html += `<label class="form-label">Barrio<span class="requerido">*</span></label>`;
         html += `<input type="text" class="form-input" id="formBarrio" placeholder="Tu barrio" value="${formularioDatos.barrio}" oninput="actualizarFormulario('barrio', this.value);validarCampos()">`;
         html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
         html += `</div>`;
-
-        html += `<div class="form-group">`;
-        html += `<label class="form-label">📌 Indicación especial de dirección <span style="font-weight:400;color:var(--color-gris-claro)">(opcional)</span></label>`;
-        html += `<input type="text" class="form-input" id="formIndicacion" placeholder="Ej: casa amarilla, 2do piso, callejón..." value="${formularioDatos.indicacion}" onchange="actualizarFormulario('indicacion', this.value)">`;
-        html += `</div>`;
     }
 
     html += `<div class="form-group">`;
-    html += `<label class="form-label">Sede ${tipoEntrega === 'domicilio' ? 'más cercana' : 'donde recoge'}<span class="requerido">*</span></label>`;
+    html += `<label class="form-label">Sede ${tipoEntrega === 'domicilio' ? 'del pedido' : 'donde recoge'}<span class="requerido">*</span></label>`;
     html += `<select class="form-select" id="formSede" onchange="actualizarFormulario('sede', this.value);validarCampos()">`;
     CONFIG.sedes.forEach(sede => {
         html += `<option value="${sede}" ${formularioDatos.sede === sede ? 'selected' : ''}>${sede}</option>`;
@@ -623,8 +623,10 @@ function enviarPedidoWhatsApp() {
     generarYEnviarMensaje();
 }
 
+// ====== REEMPLAZAR ESTA FUNCIÓN COMPLETA EN SCRIPT.JS ======
 function generarYEnviarMensaje() {
     const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    const esDomicilio = tipoEntrega === "domicilio";
     
     let texto = `*🍔 Nuevo Pedido - ${CONFIG.negocio}*\n`;
     texto += `------------------------------\n`;
@@ -634,33 +636,64 @@ function generarYEnviarMensaje() {
     });
     
     texto += `------------------------------\n`;
-    texto += `*Total:* $${total.toLocaleString()}\n\n`;
+    
+    // --- SECCIÓN DE TOTAL DINÁMICA ---
+    if (esDomicilio) {
+        texto += `*Total (sin domicilio):* $${total.toLocaleString()}\n`;
+        texto += `_Valor del domicilio se cobra aparte_\n\n`;
+    } else {
+        texto += `*Total:* $${total.toLocaleString()}\n\n`;
+    }
     
     texto += `*Datos del Cliente:*\n`;
     texto += `👤 Nombre: ${formularioDatos.nombre}\n`;
     texto += `📞 Teléfono: ${formularioDatos.telefono}\n`;
     
-    if (tipoEntrega === "domicilio") {
+    if (esDomicilio) {
+        // --- 🏠 DATOS DE DOMICILIO EXCLUSIVOS (PRIMORDIALES) ---
         texto += `📍 Dirección: ${formularioDatos.direccion}\n`;
         texto += `🏘️ Barrio: ${formularioDatos.barrio}\n`;
-        if (formularioDatos.indicacion) {
-            texto += `📝 Indicación: ${formularioDatos.indicacion}\n`;
+        
+        // ⚠️ RECUPERADO: Indicación de dirección
+        if (formularioDatos.indicacion && formularioDatos.indicacion.trim().length > 0) {
+            texto += `📝 Indicación de dirección: ${formularioDatos.indicacion}\n`;
         }
     } else {
+        // --- 🏪 DATOS DE RECOGER EN PUNTO ---
         texto += `🏪 Recoge en sede: ${formularioDatos.sede}\n`;
     }
 
-    if (formularioDatos.observaciones) {
+    // --- 🍳 SOLICITUD ESPECIAL (PRIMORDIAL - APLICA PARA AMBOS) ---
+    if (formularioDatos.observaciones && formularioDatos.observaciones.trim().length > 0) {
         texto += `🍳 Solicitud Especial: ${formularioDatos.observaciones}\n`;
     }
 
+    if (esDomicilio) {
+        texto += `🏢 Sede pedido: ${formularioDatos.sede}\n`;
+    }
+
     texto += `💳 Pago: ${formularioDatos.metodo_pago}\n`;
-    texto += `🚚 Entrega: ${tipoEntrega === "domicilio" ? "Domicilio" : "Recoger en punto"}`;
+    
+    // Solo enviamos la línea de "Entrega" si es domicilio
+    if (esDomicilio) {
+        texto += `🚚 Entrega: A Domicilio`;
+    }
 
     const enlace = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+    
+    // Google Analytics (prevención si no está definido)
+    if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+            send_to: 'G-HM35ZVLQ8W',
+            event_category: 'pedido',
+            event_label: 'Pedido WhatsApp',
+            value: total
+        });
+    }
+    
     window.open(enlace, '_blank');
 
-    // ⚠️ REINICIO CORRECTO PARA EVITAR UNDEFINED
+    // REINICIO DE FORMULARIO (Mantenemos la limpieza para evitar undefined)
     carrito = [];
     formularioDatos = {
         nombre: "",
@@ -676,7 +709,6 @@ function generarYEnviarMensaje() {
     renderizarCarrito(); // Esto vuelve a dibujar el carrito vacío
     cerrarCarrito();
 }
-
 // ═══════════════════════════════════════════════════════════════
 // EVENT LISTENERS
 // ═══════════════════════════════════════════════════════════════

@@ -17,6 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="htt...ap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
@@ -87,24 +88,38 @@
     </div>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="footer-logo">EL TOSCANO</div>
-        <div style="margin-bottom: 1.5rem;">
-            <a href="https://wa.me/573168988827?text=Hola,%20me%20gustaría%20hacer%20un%20pedido%20a%20El%20Toscano" 
-            target="_blank" 
-            style="text-decoration: none; color: inherit; font-weight: bold;">
-            </a>
-        </div>
+<footer>
+    <div class="footer-logo-container">
+        <img src="images/toscano.jpg" alt="El Toscano" class="footer-logo-img">
+    </div>
 
-        <p style="margin-top: 0.75rem;">
-            Desarrollado por 
-            <a href="https://eataicompany.github.io/eataicompany/" onclick="gtag('event', 'click_eatai', {event_category: 'footer',  event_label: 'EatAi Web'})"target="_blank" class="footer-link">🚀 EatAi</a>
-            | 
-            <a href="https://wa.me/573217054190?text=Hola%20EatAi,%20vengo%20desde%20la%20web%20de%20El%20Toscano" onclick="gtag('event', 'click_whatsapp_eatai', {event_category: 'footer', event_label: 'WhatsApp EatAi'})"target="_blank" class="footer-link">📞 321 705 4190</a>        </p>
-        
-        <p>© 2026 El Toscano. Todos los derechos reservados.</p>
-        <p>Todos los precios incluyen IVA. Imágenes ilustrativas.</p>
-    </footer>
+    <div class="footer-socials" style="display: flex; gap: 20px; justify-content: center; margin-top: 0; margin-bottom: 0.3rem; font-size: 1.5rem;">
+        <a href="https://www.facebook.com/share/1NNz8hv6rz/" target="_blank" class="social-link" title="Síguenos en Facebook" style="text-decoration: none; color: inherit; transition: color 0.2s ease;">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/ELTOSCANOPAYAN/" target="_blank" class="social-link" title="Síguenos en Instagram" style="text-decoration: none; color: inherit; transition: color 0.2s ease;">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@ELTOSCANOPAYAN/" target="_blank" class="social-link" title="Síguenos en TikTok" style="text-decoration: none; color: inherit; transition: color 0.2s ease;">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    </div>
+
+    <p style="margin-top: 0; font-size: 0.9rem; line-height: 1.6;">
+        Desarrollado por 
+        <a href="https://eataicompany.github.io/eataicompany/" target="_blank" class="footer-link">🚀 EatAi</a>
+        | 
+        <a href="https://wa.me/573217054190" target="_blank" class="footer-link">📞 321 705 4190</a>
+    </p>
+
+    <p style="font-size: 0.8rem; color: var(--color-gris-claro); margin-top: 0.3rem;">
+        © 2026 El Toscano. Todos los derechos reservados.
+    </p>
+
+    <p style="font-size: 0.8rem; color: var(--color-gris-claro); margin-top: 0.5rem;">
+        Todos los precios incluyen IVA. Imágenes ilustrativas.
+    </p>
+</footer>
 
     <!-- JAVASCRIPT -->
 <script src="script.js"></script>

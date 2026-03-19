@@ -1132,3 +1132,29 @@ select{
 .deshabilitado {
     opacity: 0.5;
 }
+.social-link {
+    transition: color 0.2s ease;
+}
+
+.social-link:hover {
+    color: var(--color-accent) !important; /* Usa tu color de acento (amarillo/dorado) al hacer hover */
+}
+/* ====== AGREGAR ESTO AL FINAL DE LA SECCIÓN FOOTER EN STYLE.CSS ====== */
+
+/* Contenedor exclusivo para el logo del footer */
+.footer-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+/* ⚠️ NUEVA CLASE PARA EL LOGO DEL FOOTER ⚠️ */
+.footer-logo-img {
+    height: 45px; /* Misma altura que el header, pero en su propia clase */
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px; /* Redondeado sutil para app móvil top */
+    /* Efectos visuales de clase mundial */
+    border: 2px solid var(--color-accent); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
