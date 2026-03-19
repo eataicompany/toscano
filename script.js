@@ -7,7 +7,7 @@ const CONFIG = {
     whatsapp: "573145476668",
     sedes: ["La Sombrilla", "Lomas de Granada", "Obando"],
     metodosPago: ["💳 Por nequi", "💵 En efectivo", "🔑 Por Bre-B"],
-    horario: { abre: 19, cierra: 23 }
+    horario: { abre: 17, cierra: 23 }
 };
 
 const MENU = {
@@ -323,11 +323,15 @@ function renderizarCarrito() {
 
     if (carrito.length === 0) {
         carritoContenido.innerHTML = `<div class="carrito-vacio">Tu carrito está vacío</div>`;
+        // SEGURIDAD: Ocultamos el botón de todas las formas posibles si no hay nada
         btnPedir.classList.add("oculto");
+        btnPedir.style.display = "none"; 
         return;
     }
 
+    // Si hay productos, nos aseguramos de que el botón sea visible
     btnPedir.classList.remove("oculto");
+    btnPedir.style.display = "block"; 
 
     let html = `<div class="carrito-items">`;
 
@@ -372,20 +376,20 @@ function renderizarCarrito() {
     html += `<div class="form-group">`;
     html += `<label class="form-label">Nombre completo<span class="requerido">*</span></label>`;
     html += `<input type="text" class="form-input" id="formNombre" placeholder="Tu nombre" value="${formularioDatos.nombre}" oninput="actualizarFormulario('nombre', this.value);validarCampos()">`;
-    html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
+    html += `<span class="error-msg"></span>`; 
     html += `</div>`;
 
     html += `<div class="form-group">`;
     html += `<label class="form-label">Celular<span class="requerido">*</span></label>`;
     html += `<input type="tel" class="form-input" id="formTelefono" placeholder="3126660512" maxlength="10" inputmode="numeric" value="${formularioDatos.telefono}" oninput="filtrarTelefono(this)">`;
-    html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
+    html += `<span class="error-msg"></span>`; 
     html += `</div>`;
 
     if (tipoEntrega === 'domicilio') {
         html += `<div class="form-group">`;
         html += `<label class="form-label">Dirección<span class="requerido">*</span></label>`;
         html += `<input type="text" class="form-input" id="formDireccion" placeholder="Ej: Calle 5 # 8-45" value="${formularioDatos.direccion}" oninput="actualizarFormulario('direccion', this.value);validarCampos()">`;
-        html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
+        html += `<span class="error-msg"></span>`; 
         html += `</div>`;
 
         html += `<div class="form-group">`;
@@ -396,7 +400,7 @@ function renderizarCarrito() {
         html += `<div class="form-group">`;
         html += `<label class="form-label">Barrio<span class="requerido">*</span></label>`;
         html += `<input type="text" class="form-input" id="formBarrio" placeholder="Tu barrio" value="${formularioDatos.barrio}" oninput="actualizarFormulario('barrio', this.value);validarCampos()">`;
-        html += `<span class="error-msg" style="color: #ff4d4d; font-size: 11px; margin-top: 4px; display: block;"></span>`; // <--- Agregar esto
+        html += `<span class="error-msg"></span>`; 
         html += `</div>`;
     }
 
@@ -421,7 +425,6 @@ function renderizarCarrito() {
     html += `<div class="form-group">`;
     html += `<label class="form-label">📝 ¿Alguna solicitud especial? <span style="font-weight:400;color:var(--color-gris-claro)">(opcional)</span></label>`;
     html += `<textarea class="form-input" id="formObservaciones" placeholder="Ej: Todas las salsas, solo ajo, llamar cuando esté afuera" rows="2" style="resize:none" onchange="actualizarFormulario('observaciones', this.value)">${formularioDatos.observaciones}</textarea>`;
-    html += `</div>`;
     html += `</div>`;
 
     carritoContenido.innerHTML = html;
@@ -623,6 +626,17 @@ function enviarPedidoWhatsApp() {
     generarYEnviarMensaje();
 }
 
+// Agrega esta función que no existía
+function actualizarBadge() {
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    const badge = document.querySelector('.carrito-badge');
+    if (badge) {
+        badge.innerText = totalItems;
+        // Si el carrito está vacío, ocultamos el círculo rojo
+        badge.style.display = totalItems > 0 ? "flex" : "none";
+    }
+}
+
 // ====== REEMPLAZAR ESTA FUNCIÓN COMPLETA EN SCRIPT.JS ======
 function generarYEnviarMensaje() {
     const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
@@ -637,7 +651,6 @@ function generarYEnviarMensaje() {
     
     texto += `------------------------------\n`;
     
-    // --- SECCIÓN DE TOTAL DINÁMICA ---
     if (esDomicilio) {
         texto += `*Total (sin domicilio):* $${total.toLocaleString()}\n`;
         texto += `_Valor del domicilio se cobra aparte_\n\n`;
@@ -650,20 +663,15 @@ function generarYEnviarMensaje() {
     texto += `📞 Teléfono: ${formularioDatos.telefono}\n`;
     
     if (esDomicilio) {
-        // --- 🏠 DATOS DE DOMICILIO EXCLUSIVOS (PRIMORDIALES) ---
         texto += `📍 Dirección: ${formularioDatos.direccion}\n`;
         texto += `🏘️ Barrio: ${formularioDatos.barrio}\n`;
-        
-        // ⚠️ RECUPERADO: Indicación de dirección
         if (formularioDatos.indicacion && formularioDatos.indicacion.trim().length > 0) {
             texto += `📝 Indicación de dirección: ${formularioDatos.indicacion}\n`;
         }
     } else {
-        // --- 🏪 DATOS DE RECOGER EN PUNTO ---
         texto += `🏪 Recoge en sede: ${formularioDatos.sede}\n`;
     }
 
-    // --- 🍳 SOLICITUD ESPECIAL (PRIMORDIAL - APLICA PARA AMBOS) ---
     if (formularioDatos.observaciones && formularioDatos.observaciones.trim().length > 0) {
         texto += `🍳 Solicitud Especial: ${formularioDatos.observaciones}\n`;
     }
@@ -674,41 +682,33 @@ function generarYEnviarMensaje() {
 
     texto += `💳 Pago: ${formularioDatos.metodo_pago}\n`;
     
-    // Solo enviamos la línea de "Entrega" si es domicilio
     if (esDomicilio) {
         texto += `🚚 Entrega: A Domicilio`;
     }
 
     const enlace = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
-    
-    // Google Analytics (prevención si no está definido)
-    if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-            send_to: 'G-HM35ZVLQ8W',
-            event_category: 'pedido',
-            event_label: 'Pedido WhatsApp',
-            value: total
-        });
-    }
-    
     window.open(enlace, '_blank');
 
-    // REINICIO DE FORMULARIO (Mantenemos la limpieza para evitar undefined)
+    // ⚠️ REINICIO TOTAL (Aquí es donde se arregla tu error grave)
     carrito = [];
     formularioDatos = {
         nombre: "",
         telefono: "",
         direccion: "",
         barrio: "",
-        indicacion: "",    // Limpio
+        indicacion: "",
         sede: CONFIG.sedes[0],
         metodo_pago: CONFIG.metodosPago[0],
-        observaciones: ""  // Limpio
+        observaciones: ""
     };
     tipoEntrega = "domicilio";
-    renderizarCarrito(); // Esto vuelve a dibujar el carrito vacío
-    cerrarCarrito();
+
+    // LLAMADAS DE LIMPIEZA VISUAL
+    actualizarBadge();   // Esto pondrá el círculo rojo en 0 y lo ocultará
+    renderizarCarrito(); // Esto dibujará "Tu carrito está vacío" y ocultará el botón Pedir
+    cerrarCarrito();     // Cierra el panel lateral
 }
+
 // ═══════════════════════════════════════════════════════════════
 // EVENT LISTENERS
 // ═══════════════════════════════════════════════════════════════
