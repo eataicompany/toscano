@@ -12,96 +12,96 @@ const CONFIG = {
 
 const MENU = {
     bebidas: [
-        { id: "coctel_variado", nombre: "Tom Collins, Margarita, Piña Colada, Capitán Nirvana", precio: 15000, ingredientes: ["Ron", "Jugo de limón fresco", "Jarabe simple", "Agua de soda"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "michelada_tradicional", nombre: "Michelada Tradicional", precio: 6000, ingredientes: ["Cerveza", "Salsa Maggi", "Limón", "Especias"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "michelada_sin_alcohol", nombre: "Michelada Sin Alcohol", precio: 6000, ingredientes: ["Agua de soda", "Salsa Maggi", "Limón", "Especias"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "michelada_toscana", nombre: "Michelada Toscana", precio: 8000, ingredientes: ["Cerveza", "Salsa especial Toscano", "Limón", "Toque de chamoy"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "michelada_alcohol", nombre: "Michelada Con Alcohol", precio: 10000, ingredientes: ["Cerveza premium", "Salsa Maggi", "Limón", "Ron blanco"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "jugo_agua_personal", nombre: "Jugo Natural en Agua (Personal)", precio: 4000, ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "jugo_agua_jarra", nombre: "Jugo Natural en Agua (Jarra)", precio: 7000, ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "jugo_leche_personal", nombre: "Jugo Natural en Leche (Personal)", precio: 5000, ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo", "Leche fresca"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "jugo_leche_jarra", nombre: "Jugo Natural en Leche (Jarra)", precio: 9000, ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo", "Leche fresca"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "limonada_natural", nombre: "Limonada Natural", precio: 10000, ingredientes: ["Limones frescos", "Agua", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "limonada_coco", nombre: "Limonada Coco", precio: 10000, ingredientes: ["Limones frescos", "Leche de coco", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "cerezada", nombre: "Cerezada", precio: 10000, ingredientes: ["Jugo de cereza", "Agua", "Hielo"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "malteada_pina_colada", nombre: "Malteada Piña Colada", precio: 10000, ingredientes: ["Piña", "Leche de coco", "Helado de vainilla"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "gaseosa_personal", nombre: "Gaseosa (Personal)", precio: 4000, ingredientes: ["Gaseosa fría"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "gaseosa_litro", nombre: "Gaseosa (Litro)", precio: 6000, ingredientes: ["Gaseosa fría"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "coca_cola_1_5l", nombre: "Coca-Cola 1.5L", precio: 8000, ingredientes: ["Coca-Cola"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "cerveza", nombre: "Cerveza", precio: 5000, ingredientes: ["Cerveza fría"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "hervido_maracuya", nombre: "Hervido Maracuyá", precio: 10000, ingredientes: ["Maracuyá", "Agua caliente", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "hervido_lulo", nombre: "Hervido Lulo", precio: 10000, ingredientes: ["Lulo", "Agua caliente", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "hervido_mora", nombre: "Hervido Mora", precio: 10000, ingredientes: ["Mora", "Agua caliente", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "cafe_negro", nombre: "Café Negro", precio: 2000, ingredientes: ["Café gourmet"], emoji: "🍹", categoria: "Bebidas" },
-        { id: "cafe_leche", nombre: "Café en Leche", precio: 3000, ingredientes: ["Café gourmet", "Leche caliente"], emoji: "🍹", categoria: "Bebidas" }
+        { id: "coctel_variado", nombre: "Tom Collins, Margarita, Piña Colada, Capitán Nirvana", precio: 15000, imagen: "cocteles.jpg", ingredientes: ["Ron", "Jugo de limón fresco", "Jarabe simple", "Agua de soda"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "michelada_tradicional", nombre: "Michelada Tradicional", precio: 6000, imagen: "michelada-tradicional.jpg", ingredientes: ["Cerveza", "Salsa Maggi", "Limón", "Especias"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "michelada_sin_alcohol", nombre: "Michelada Sin Alcohol", precio: 6000, imagen: "michelada-sin.jpg", ingredientes: ["Agua de soda", "Salsa Maggi", "Limón", "Especias"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "michelada_toscana", nombre: "Michelada Toscana", precio: 8000, imagen: "michelada-toscana.jpg", ingredientes: ["Cerveza", "Salsa especial Toscano", "Limón", "Toque de chamoy"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "michelada_alcohol", nombre: "Michelada Con Alcohol", precio: 10000, imagen: "michelada-alcohol.jpg", ingredientes: ["Cerveza premium", "Salsa Maggi", "Limón", "Ron blanco"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "jugo_agua_personal", nombre: "Jugo Natural en Agua (Personal)", precio: 4000, imagen: "jugo-agua.jpg", ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "jugo_agua_jarra", nombre: "Jugo Natural en Agua (Jarra)", precio: 7000, imagen: "jarra-agua.jpg", ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "jugo_leche_personal", nombre: "Jugo Natural en Leche (Personal)", precio: 5000, imagen: "jugo-leche.jpg", ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo", "Leche fresca"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "jugo_leche_jarra", nombre: "Jugo Natural en Leche (Jarra)", precio: 9000, imagen: "jarra-leche.jpg", ingredientes: ["Guanábana / Mango / Mora / Maracuyá / Lulo", "Leche fresca"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "limonada_natural", nombre: "Limonada Natural", precio: 10000, imagen: "limonada-natural.jpg", ingredientes: ["Limones frescos", "Agua", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "limonada_coco", nombre: "Limonada Coco", precio: 10000, imagen: "limonada-coco.jpg", ingredientes: ["Limones frescos", "Leche de coco", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "cerezada", nombre: "Cerezada", precio: 10000, imagen: "cerezada.jpg", ingredientes: ["Jugo de cereza", "Agua", "Hielo"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "malteada_pina_colada", nombre: "Malteada Piña Colada", precio: 10000, imagen: "malteada-pina.jpg", ingredientes: ["Piña", "Leche de coco", "Helado de vainilla"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "gaseosa_personal", nombre: "Gaseosa (Personal)", precio: 4000, imagen: "gaseosa-personal.jpg", ingredientes: ["Gaseosa fría"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "gaseosa_litro", nombre: "Gaseosa (Litro)", precio: 6000, imagen: "gaseosa-litro.jpg", ingredientes: ["Gaseosa fría"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "coca_cola_1_5l", nombre: "Coca-Cola 1.5L", precio: 8000, imagen: "cocacola-15.jpg", ingredientes: ["Coca-Cola"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "cerveza", nombre: "Cerveza", precio: 5000, imagen: "cerveza.jpg", ingredientes: ["Cerveza fría"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "hervido_maracuya", nombre: "Hervido Maracuyá", precio: 10000, imagen: "hervido-maracuya.jpg", ingredientes: ["Maracuyá", "Agua caliente", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "hervido_lulo", nombre: "Hervido Lulo", precio: 10000, imagen: "hervido-lulo.jpg", ingredientes: ["Lulo", "Agua caliente", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "hervido_mora", nombre: "Hervido Mora", precio: 10000, imagen: "hervido-mora.jpg", ingredientes: ["Mora", "Agua caliente", "Azúcar"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "cafe_negro", nombre: "Café Negro", precio: 2000, imagen: "cafe-negro.jpg", ingredientes: ["Café gourmet"], emoji: "🍹", categoria: "Bebidas" },
+        { id: "cafe_leche", nombre: "Café en Leche", precio: 3000, imagen: "cafe-leche.jpg", ingredientes: ["Café gourmet", "Leche caliente"], emoji: "🍹", categoria: "Bebidas" }
     ],
     carnes: [
-        { id: "carne_res", nombre: "Carne de Res (180g + Papa a la Francesa)", precio: 13000, ingredientes: ["Carne premium 180g", "Papa a la francesa", "Ensalada fresca"], emoji: "🍖", categoria: "Carnes" },
-        { id: "carne_cerdo", nombre: "Carne de Cerdo (180g + Papa a la Francesa)", precio: 13000, ingredientes: ["Cerdo premium 180g", "Papa a la francesa", "Ensalada fresca"], emoji: "🍖", categoria: "Carnes" },
-        { id: "costilla_frita", nombre: "Costilla Frita (180g + Papa a la Francesa)", precio: 13000, ingredientes: ["Costilla frita crujiente", "Papa a la francesa", "Ensalada"], emoji: "🍖", categoria: "Carnes" },
-        { id: "costilla_bbq", nombre: "Costilla BBQ (180g + Papa a la Francesa)", precio: 13000, ingredientes: ["Costilla BBQ ahumada", "Papa a la francesa", "Salsa BBQ"], emoji: "🍖", categoria: "Carnes" },
-        { id: "pechuga", nombre: "Pechuga (180g + Papa a la Francesa)", precio: 15000, ingredientes: ["Pechuga de pollo 180g", "Papa a la francesa", "Ensalada"], emoji: "🍖", categoria: "Carnes" },
-        { id: "churrasco", nombre: "Churrasco (180g + Papa a la Francesa)", precio: 16000, ingredientes: ["Churrasco de res", "Papa a la francesa", "Ensalada"], emoji: "🍖", categoria: "Carnes" },
-        { id: "picada_2_personas", nombre: "Picada 2 Personas", precio: 30000, ingredientes: ["Carne", "Costilla", "Pollo", "Salchichas", "Papa"], emoji: "🍖", categoria: "Carnes" },
-        { id: "picada_3_4_personas", nombre: "Picada 3-4 Personas", precio: 50000, ingredientes: ["Carne", "Costilla", "Pollo", "Salchichas", "Alitas", "Papa"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_bbq_6", nombre: "Alitas BBQ (6 piezas)", precio: 15000, ingredientes: ["Alitas de pollo", "Salsa BBQ ahumada"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_miel_mostaza_6", nombre: "Alitas Miel-Mostaza (6 piezas)", precio: 15000, ingredientes: ["Alitas de pollo", "Salsa miel y mostaza"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_teriyaki_6", nombre: "Alitas Teriyaki (6 piezas)", precio: 15000, ingredientes: ["Alitas de pollo", "Salsa Teriyaki"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_bbq_8", nombre: "Alitas BBQ (8 piezas)", precio: 20000, ingredientes: ["Alitas de pollo", "Salsa BBQ ahumada"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_miel_mostaza_8", nombre: "Alitas Miel-Mostaza (8 piezas)", precio: 20000, ingredientes: ["Alitas de pollo", "Salsa miel y mostaza"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_teriyaki_8", nombre: "Alitas Teriyaki (8 piezas)", precio: 20000, ingredientes: ["Alitas de pollo", "Salsa Teriyaki"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_bbq_12", nombre: "Alitas BBQ (12 piezas)", precio: 27000, ingredientes: ["Alitas de pollo", "Salsa BBQ ahumada"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_miel_mostaza_12", nombre: "Alitas Miel-Mostaza (12 piezas)", precio: 27000, ingredientes: ["Alitas de pollo", "Salsa miel y mostaza"], emoji: "🍖", categoria: "Carnes" },
-        { id: "alitas_teriyaki_12", nombre: "Alitas Teriyaki (12 piezas)", precio: 27000, ingredientes: ["Alitas de pollo", "Salsa Teriyaki"], emoji: "🍖", categoria: "Carnes" },
-        { id: "arroz", nombre: "Arroz", precio: 3000, ingredientes: ["Arroz blanco cocido"], emoji: "🍖", categoria: "Carnes" },
-        { id: "papa", nombre: "Papa a la Francesa", precio: 5000, ingredientes: ["Papa fresca frita"], emoji: "🍖", categoria: "Carnes" }
+        { id: "carne_res", nombre: "Carne de Res (180g + Papa a la Francesa)", precio: 13000, imagen: "res-papa.jpg", ingredientes: ["Carne premium 180g", "Papa a la francesa", "Ensalada fresca"], emoji: "🍖", categoria: "Carnes" },
+        { id: "carne_cerdo", nombre: "Carne de Cerdo (180g + Papa a la Francesa)", precio: 13000, imagen: "cerdo-papa.jpg", ingredientes: ["Cerdo premium 180g", "Papa a la francesa", "Ensalada fresca"], emoji: "🍖", categoria: "Carnes" },
+        { id: "costilla_frita", nombre: "Costilla Frita (180g + Papa a la Francesa)", precio: 13000, imagen: "costilla-frita.jpg", ingredientes: ["Costilla frita crujiente", "Papa a la francesa", "Ensalada"], emoji: "🍖", categoria: "Carnes" },
+        { id: "costilla_bbq", nombre: "Costilla BBQ (180g + Papa a la Francesa)", precio: 13000, imagen: "costilla-bbq.jpg", ingredientes: ["Costilla BBQ ahumada", "Papa a la francesa", "Salsa BBQ"], emoji: "🍖", categoria: "Carnes" },
+        { id: "pechuga", nombre: "Pechuga (180g + Papa a la Francesa)", precio: 15000, imagen: "pechuga-papa.jpg", ingredientes: ["Pechuga de pollo 180g", "Papa a la francesa", "Ensalada"], emoji: "🍖", categoria: "Carnes" },
+        { id: "churrasco", nombre: "Churrasco (180g + Papa a la Francesa)", precio: 16000, imagen: "churrasco.jpg", ingredientes: ["Churrasco de res", "Papa a la francesa", "Ensalada"], emoji: "🍖", categoria: "Carnes" },
+        { id: "picada_2_personas", nombre: "Picada 2 Personas", precio: 30000, imagen: "picada-2.jpg", ingredientes: ["Carne", "Costilla", "Pollo", "Salchichas", "Papa"], emoji: "🍖", categoria: "Carnes" },
+        { id: "picada_3_4_personas", nombre: "Picada 3-4 Personas", precio: 50000, imagen: "picada-4.jpg", ingredientes: ["Carne", "Costilla", "Pollo", "Salchichas", "Alitas", "Papa"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_bbq_6", nombre: "Alitas BBQ (6 piezas)", precio: 15000, imagen: "alitas-bbq.jpg", ingredientes: ["Alitas de pollo", "Salsa BBQ ahumada"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_miel_mostaza_6", nombre: "Alitas Miel-Mostaza (6 piezas)", precio: 15000, imagen: "alitas-miel.jpg", ingredientes: ["Alitas de pollo", "Salsa miel y mostaza"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_teriyaki_6", nombre: "Alitas Teriyaki (6 piezas)", precio: 15000, imagen: "alitas-teriyaki.jpg", ingredientes: ["Alitas de pollo", "Salsa Teriyaki"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_bbq_8", nombre: "Alitas BBQ (8 piezas)", precio: 20000, imagen: "alitas-bbq.jpg", ingredientes: ["Alitas de pollo", "Salsa BBQ ahumada"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_miel_mostaza_8", nombre: "Alitas Miel-Mostaza (8 piezas)", precio: 20000, imagen: "alitas-miel.jpg", ingredientes: ["Alitas de pollo", "Salsa miel y mostaza"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_teriyaki_8", nombre: "Alitas Teriyaki (8 piezas)", precio: 20000, imagen: "alitas-teriyaki.jpg", ingredientes: ["Alitas de pollo", "Salsa Teriyaki"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_bbq_12", nombre: "Alitas BBQ (12 piezas)", precio: 27000, imagen: "alitas-bbq.jpg", ingredientes: ["Alitas de pollo", "Salsa BBQ ahumada"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_miel_mostaza_12", nombre: "Alitas Miel-Mostaza (12 piezas)", precio: 27000, imagen: "alitas-miel.jpg", ingredientes: ["Alitas de pollo", "Salsa miel y mostaza"], emoji: "🍖", categoria: "Carnes" },
+        { id: "alitas_teriyaki_12", nombre: "Alitas Teriyaki (12 piezas)", precio: 27000, imagen: "alitas-teriyaki.jpg", ingredientes: ["Alitas de pollo", "Salsa Teriyaki"], emoji: "🍖", categoria: "Carnes" },
+        { id: "arroz", nombre: "Arroz", precio: 3000, imagen: "arroz.jpg", ingredientes: ["Arroz blanco cocido"], emoji: "🍖", categoria: "Carnes" },
+        { id: "papa", nombre: "Papa a la Francesa", precio: 5000, imagen: "papa-francesa.jpg", ingredientes: ["Papa fresca frita"], emoji: "🍖", categoria: "Carnes" }
     ],
     salchipapas: [
-        { id: "salchipapa_personal", nombre: "Salchipapa Personal", precio: 6000, ingredientes: ["Papa fritas", "Salchicha", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
-        { id: "salchipapa_mediana", nombre: "Salchipapa Mediana", precio: 18000, ingredientes: ["Papa fritas", "Salchicha", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
-        { id: "salchipapa_grande", nombre: "Salchipapa Grande", precio: 25000, ingredientes: ["Papa fritas abundante", "Salchicha", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
-        { id: "salchipapa_familiar", nombre: "Salchipapa Familiar", precio: 30000, ingredientes: ["Papa fritas abundante", "Salchichas", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
-        { id: "salchipapa_super", nombre: "Salchipapa Super", precio: 40000, ingredientes: ["Papa fritas abundante", "Salchichas", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
-        { id: "la_toscana", nombre: "La Toscana (4 porciones)", precio: 50000, ingredientes: ["Papa fritas", "Costilla BBQ", "Alitas BBQ", "Pollo", "Carne", "Chorizo", "Maicitos", "Tocineta"], emoji: "🍟", categoria: "Salchipapas" }
+        { id: "salchipapa_personal", nombre: "Salchipapa Personal", precio: 6000, imagen: "salchipapa-personal.jpg", ingredientes: ["Papa fritas", "Salchicha", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
+        { id: "salchipapa_mediana", nombre: "Salchipapa Mediana", precio: 18000, imagen: "salchipapa-mediana.jpg", ingredientes: ["Papa fritas", "Salchicha", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
+        { id: "salchipapa_grande", nombre: "Salchipapa Grande", precio: 25000, imagen: "salchipapa-grande.jpg", ingredientes: ["Papa fritas abundante", "Salchicha", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
+        { id: "salchipapa_familiar", nombre: "Salchipapa Familiar", precio: 30000, imagen: "salchipapa-familiar.jpg", ingredientes: ["Papa fritas abundante", "Salchichas", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
+        { id: "salchipapa_super", nombre: "Salchipapa Super", precio: 40000, imagen: "salchipapa-super.jpg", ingredientes: ["Papa fritas abundante", "Salchichas", "Queso fundido", "Salsas variadas"], emoji: "🍟", categoria: "Salchipapas" },
+        { id: "la_toscana", nombre: "La Toscana (4 porciones)", precio: 50000, imagen: "la-toscana.jpg", ingredientes: ["Papa fritas", "Costilla BBQ", "Alitas BBQ", "Pollo", "Carne", "Chorizo", "Maicitos", "Tocineta"], emoji: "🍟", categoria: "Salchipapas" }
     ],
     desgranados_pizza: [
-        { id: "desgranado", nombre: "Desgranado", precio: 12000, ingredientes: ["Papa", "Maíz desgranado", "Queso", "Salsas"], emoji: "🌽", categoria: "Desgranados y Pizza" },
-        { id: "desgranado_criollo", nombre: "Desgranado Criollo", precio: 12000, ingredientes: ["Papa", "Maíz desgranado", "Queso fresco", "Chorizo"], emoji: "🌽", categoria: "Desgranados y Pizza" },
-        { id: "pizza_personal", nombre: "Pizza Personal (Base Queso, Jamón, Salsa)", precio: 7000, ingredientes: ["Masa artesanal", "Salsa de tomate", "Queso mozzarella", "Jamón"], emoji: "🌽", categoria: "Desgranados y Pizza" },
-        { id: "taco_2", nombre: "Tacos (2 piezas)", precio: 7000, ingredientes: ["Tortillas", "Jamón", "Queso", "Pollo", "Maicitos", "Papitas", "Salsas"], emoji: "🌽", categoria: "Desgranados y Pizza" },
-        { id: "taco_3", nombre: "Tacos (3 piezas)", precio: 10000, ingredientes: ["Tortillas", "Jamón", "Queso", "Pollo", "Maicitos", "Papitas", "Salsas"], emoji: "🌽", categoria: "Desgranados y Pizza" },
-        { id: "chorizo", nombre: "Chorizo", precio: 4000, ingredientes: ["Chorizo colombiano a la brasa"], emoji: "🌽", categoria: "Desgranados y Pizza" }
+        { id: "desgranado", nombre: "Desgranado", precio: 12000, imagen: "desgranado.jpg", ingredientes: ["Papa", "Maíz desgranado", "Queso", "Salsas"], emoji: "🌽", categoria: "Desgranados y Pizza" },
+        { id: "desgranado_criollo", nombre: "Desgranado Criollo", precio: 12000, imagen: "desgranado-criollo.jpg", ingredientes: ["Papa", "Maíz desgranado", "Queso fresco", "Chorizo"], emoji: "🌽", categoria: "Desgranados y Pizza" },
+        { id: "pizza_personal", nombre: "Pizza Personal (Base Queso, Jamón, Salsa)", precio: 7000, imagen: "pizza-personal.jpg", ingredientes: ["Masa artesanal", "Salsa de tomate", "Queso mozzarella", "Jamón"], emoji: "🌽", categoria: "Desgranados y Pizza" },
+        { id: "taco_2", nombre: "Tacos (2 piezas)", precio: 7000, imagen: "tacos-2.jpg", ingredientes: ["Tortillas", "Jamón", "Queso", "Pollo", "Maicitos", "Papitas", "Salsas"], emoji: "🌽", categoria: "Desgranados y Pizza" },
+        { id: "taco_3", nombre: "Tacos (3 piezas)", precio: 10000, imagen: "tacos-3.jpg", ingredientes: ["Tortillas", "Jamón", "Queso", "Pollo", "Maicitos", "Papitas", "Salsas"], emoji: "🌽", categoria: "Desgranados y Pizza" },
+        { id: "chorizo", nombre: "Chorizo", precio: 4000, imagen: "chorizo.jpg", ingredientes: ["Chorizo colombiano a la brasa"], emoji: "🌽", categoria: "Desgranados y Pizza" }
     ],
     sandwiches: [
-        { id: "el_travieso", nombre: "El Travieso", precio: 10000, ingredientes: ["Pan integral", "Jamón", "Queso", "Tomate", "Mayonesa"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_hawaiano", nombre: "El Hawaiano", precio: 12000, ingredientes: ["Pan tostado", "Jamón", "Piña", "Queso", "Salsa especial"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_meloso", nombre: "El Meloso", precio: 14000, ingredientes: ["Pan dulce", "Jamón", "Queso", "Piña", "Salsa BBQ"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_aventurero", nombre: "El Aventurero", precio: 14000, ingredientes: ["Pan rústico", "Carne", "Cebolla caramelizada", "Queso", "Especias"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_poderoso", nombre: "El Poderoso", precio: 14000, ingredientes: ["Pan doble", "Carne", "Queso", "Huevo", "Tocino", "Salsas"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_fantastico", nombre: "El Fantástico", precio: 14000, ingredientes: ["Pan artesanal", "Pollo", "Queso", "Tomate", "Lechuga", "Mayonesa"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_revoltoso", nombre: "El Revoltoso", precio: 16000, ingredientes: ["Pan triple", "Carne", "Pollo", "Jamón", "Queso", "Huevo"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "el_gloton", nombre: "El Glotón", precio: 16000, ingredientes: ["Pan grande", "Carne", "Pollo", "Queso", "Salsa especial", "Tocino"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "punta_cubana", nombre: "Punta Cubana", precio: 5000, ingredientes: ["Pan tostado", "Jamón", "Queso", "Especias cubanas"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "punta_hawaiana", nombre: "Punta Hawaiana", precio: 5000, ingredientes: ["Pan tostado", "Jamón", "Piña", "Queso"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "punta_pollo", nombre: "Punta Pollo", precio: 6000, ingredientes: ["Pan tostado", "Pollo deshilachado", "Queso", "Salsas"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "punta_criolla", nombre: "Punta Criolla", precio: 6000, ingredientes: ["Pan tostado", "Carne", "Queso", "Salsas criollas"], emoji: "🥪", categoria: "Sandwiches" },
-        { id: "super_punta", nombre: "Super Punta", precio: 7000, ingredientes: ["Pan grande tostado", "Carne", "Pollo", "Queso", "Huevo"], emoji: "🥪", categoria: "Sandwiches" }
+        { id: "el_travieso", nombre: "El Travieso", precio: 10000, imagen: "sandwich-travieso.jpg", ingredientes: ["Pan integral", "Jamón", "Queso", "Tomate", "Mayonesa"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_hawaiano", nombre: "El Hawaiano", precio: 12000, imagen: "sandwich-hawaiano.jpg", ingredientes: ["Pan tostado", "Jamón", "Piña", "Queso", "Salsa especial"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_meloso", nombre: "El Meloso", precio: 14000, imagen: "sandwich-meloso.jpg", ingredientes: ["Pan dulce", "Jamón", "Queso", "Piña", "Salsa BBQ"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_aventurero", nombre: "El Aventurero", precio: 14000, imagen: "sandwich-aventurero.jpg", ingredientes: ["Pan rústico", "Carne", "Cebolla caramelizada", "Queso", "Especias"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_poderoso", nombre: "El Poderoso", precio: 14000, imagen: "sandwich-poderoso.jpg", ingredientes: ["Pan doble", "Carne", "Queso", "Huevo", "Tocino", "Salsas"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_fantastico", nombre: "El Fantástico", precio: 14000, imagen: "sandwich-fantastico.jpg", ingredientes: ["Pan artesanal", "Pollo", "Queso", "Tomate", "Lechuga", "Mayonesa"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_revoltoso", nombre: "El Revoltoso", precio: 16000, imagen: "sandwich-revoltoso.jpg", ingredientes: ["Pan triple", "Carne", "Pollo", "Jamón", "Queso", "Huevo"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "el_gloton", nombre: "El Glotón", precio: 16000, imagen: "sandwich-gloton.jpg", ingredientes: ["Pan grande", "Carne", "Pollo", "Queso", "Salsa especial", "Tocino"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "punta_cubana", nombre: "Punta Cubana", precio: 5000, imagen: "punta-cubana.jpg", ingredientes: ["Pan tostado", "Jamón", "Queso", "Especias cubanas"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "punta_hawaiana", nombre: "Punta Hawaiana", precio: 5000, imagen: "punta-hawaiana.jpg", ingredientes: ["Pan tostado", "Jamón", "Piña", "Queso"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "punta_pollo", nombre: "Punta Pollo", precio: 6000, imagen: "punta-pollo.jpg", ingredientes: ["Pan tostado", "Pollo deshilachado", "Queso", "Salsas"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "punta_criolla", nombre: "Punta Criolla", precio: 6000, imagen: "punta-criolla.jpg", ingredientes: ["Pan tostado", "Carne", "Queso", "Salsas criollas"], emoji: "🥪", categoria: "Sandwiches" },
+        { id: "super_punta", nombre: "Super Punta", precio: 7000, imagen: "super-punta.jpg", ingredientes: ["Pan grande tostado", "Carne", "Pollo", "Queso", "Huevo"], emoji: "🥪", categoria: "Sandwiches" }
     ],
     hamburguesas: [
-        { id: "picara", nombre: "Hamburguesa Pícara", precio: 12000, ingredientes: ["Pan artesanal", "Carne de res 150g", "Queso cheddar", "Jalapeños", "Salsas picantes"], emoji: "🍔", categoria: "Hamburguesas" },
-        { id: "furiosa", nombre: "Hamburguesa Furiosa", precio: 12000, ingredientes: ["Pan integral", "Carne de res 150g", "Queso", "Cebolla", "Salsa BBQ"], emoji: "🍔", categoria: "Hamburguesas" },
-        { id: "americana", nombre: "Hamburguesa Americana", precio: 12000, ingredientes: ["Pan brioche", "Carne 150g", "Queso american", "Lechuga", "Tomate"], emoji: "🍔", categoria: "Hamburguesas" },
-        { id: "pecadora", nombre: "Hamburguesa Pecadora", precio: 14000, ingredientes: ["Pan artesanal", "Carne 150g", "Queso", "Tocino", "Huevo", "Salsa especial"], emoji: "🍔", categoria: "Hamburguesas" },
-        { id: "manosa", nombre: "Hamburguesa Mañosa", precio: 14000, ingredientes: ["Pan doble", "Carne 150g", "Queso múltiple", "Tomate", "Lechuga", "Cebolla"], emoji: "🍔", categoria: "Hamburguesas" },
-        { id: "fitness", nombre: "Hamburguesa Fitness", precio: 15000, ingredientes: ["Pan integral", "Pechuga de pollo 150g", "Lechuga", "Tomate", "Aguacate"], emoji: "🍔", categoria: "Hamburguesas" },
-        { id: "golosa", nombre: "Hamburguesa Golosa", precio: 17000, ingredientes: ["Pan de queso", "Carne 150g", "Queso triple", "Huevo", "Tocino", "Mayonesa especial"], emoji: "🍔", categoria: "Hamburguesas" }
+        { id: "picara", nombre: "Hamburguesa Pícara", precio: 12000, imagen: "hamburguesa-picara.jpg", ingredientes: ["Pan artesanal", "Carne de res 150g", "Queso cheddar", "Jalapeños", "Salsas picantes"], emoji: "🍔", categoria: "Hamburguesas" },
+        { id: "furiosa", nombre: "Hamburguesa Furiosa", precio: 12000, imagen: "hamburguesa-furiosa.jpg", ingredientes: ["Pan integral", "Carne de res 150g", "Queso", "Cebolla", "Salsa BBQ"], emoji: "🍔", categoria: "Hamburguesas" },
+        { id: "americana", nombre: "Hamburguesa Americana", precio: 12000, imagen: "hamburguesa-americana.jpg", ingredientes: ["Pan brioche", "Carne 150g", "Queso american", "Lechuga", "Tomate"], emoji: "🍔", categoria: "Hamburguesas" },
+        { id: "pecadora", nombre: "Hamburguesa Pecadora", precio: 14000, imagen: "hamburguesa-pecadora.jpg", ingredientes: ["Pan artesanal", "Carne 150g", "Queso", "Tocino", "Huevo", "Salsa especial"], emoji: "🍔", categoria: "Hamburguesas" },
+        { id: "manosa", nombre: "Hamburguesa Mañosa", precio: 14000, imagen: "hamburguesa-manosa.jpg", ingredientes: ["Pan doble", "Carne 150g", "Queso múltiple", "Tomate", "Lechuga", "Cebolla"], emoji: "🍔", categoria: "Hamburguesas" },
+        { id: "fitness", nombre: "Hamburguesa Fitness", precio: 15000, imagen: "hamburguesa-fitness.jpg", ingredientes: ["Pan integral", "Pechuga de pollo 150g", "Lechuga", "Tomate", "Aguacate"], emoji: "🍔", categoria: "Hamburguesas" },
+        { id: "golosa", nombre: "Hamburguesa Golosa", precio: 17000, imagen: "hamburguesa-golosa.jpg", ingredientes: ["Pan de queso", "Carne 150g", "Queso triple", "Huevo", "Tocino", "Mayonesa especial"], emoji: "🍔", categoria: "Hamburguesas" }
     ],
     perros: [
-        { id: "bull_dog", nombre: "Bull Dog", precio: 9000, ingredientes: ["Pan artesanal", "Salchicha premium", "Queso fundido", "Salsas"], emoji: "🌭", categoria: "Perros Calientes" },
-        { id: "doberman", nombre: "Doberman", precio: 9000, ingredientes: ["Pan integral", "Salchicha gourmet", "Queso", "Cebolla caramelizada"], emoji: "🌭", categoria: "Perros Calientes" },
-        { id: "gran_danes", nombre: "Gran Danés", precio: 10000, ingredientes: ["Pan grande artesanal", "Salchicha premium 150g", "Queso fundido", "Tocino", "Salsas"], emoji: "🌭", categoria: "Perros Calientes" },
-        { id: "pits_bull", nombre: "Pits Bull", precio: 11000, ingredientes: ["Pan artesanal", "Doble salchicha", "Queso", "Jalapeños", "Salsas picantes"], emoji: "🌭", categoria: "Perros Calientes" },
-        { id: "la_perrita", nombre: "La Perrita", precio: 12000, ingredientes: ["Pan artesanal", "Salchicha premium", "Queso fundido", "Tocino", "Huevo", "Salsas especiales"], emoji: "🌭", categoria: "Perros Calientes" }
+        { id: "bull_dog", nombre: "Bull Dog", precio: 9000, imagen: "perro-bulldog.jpg", ingredientes: ["Pan artesanal", "Salchicha premium", "Queso fundido", "Salsas"], emoji: "🌭", categoria: "Perros Calientes" },
+        { id: "doberman", nombre: "Doberman", precio: 9000, imagen: "perro-doberman.jpg", ingredientes: ["Pan integral", "Salchicha gourmet", "Queso", "Cebolla caramelizada"], emoji: "🌭", categoria: "Perros Calientes" },
+        { id: "gran_danes", nombre: "Gran Danés", precio: 10000, imagen: "perro-grandanes.jpg", ingredientes: ["Pan grande artesanal", "Salchicha premium 150g", "Queso fundido", "Tocino", "Salsas"], emoji: "🌭", categoria: "Perros Calientes" },
+        { id: "pits_bull", nombre: "Pits Bull", precio: 11000, imagen: "perro-pitbull.jpg", ingredientes: ["Pan artesanal", "Doble salchicha", "Queso", "Jalapeños", "Salsas picantes"], emoji: "🌭", categoria: "Perros Calientes" },
+        { id: "la_perrita", nombre: "La Perrita", precio: 12000, imagen: "perro-perrita.jpg", ingredientes: ["Pan artesanal", "Salchicha premium", "Queso fundido", "Tocino", "Huevo", "Salsas especiales"], emoji: "🌭", categoria: "Perros Calientes" }
     ]
 };
 
@@ -230,22 +230,32 @@ function renderizarMenu() {
 
 function seleccionarCategoria(categoriaId, categorias) {
     const categoria = categorias.find(c => c.id === categoriaId);
-    if (!categoria) return;
+    if (!categoria || !categoria.items) return;
 
     // Actualizar tabs activos
-    document.querySelectorAll(".tab-btn").forEach((btn, idx) => {
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.classList.toggle("active", btn.innerHTML.includes(categoria.nombre));
     });
 
-    // Renderizar productos ordenados de menor a mayor precio
+    // Renderizar productos en el contenedor correcto (productosGrid)
     productosGrid.innerHTML = "";
+    
+    // Ordenar de menor a mayor precio
     const itemsOrdenados = [...categoria.items].sort((a, b) => a.precio - b.precio);
+
     itemsOrdenados.forEach(producto => {
         const card = document.createElement("div");
         card.className = "producto-card";
+        
+        // Lógica de imagen con seguro toscano.jpg
+        const rutaImagen = producto.imagen ? `images/${producto.imagen}` : "images/toscano.jpg";
+
         card.innerHTML = `
-            <img class="producto-imagen" src="https://placehold.co/300x200/1a1a1a/f39c12?text=${encodeURIComponent(producto.nombre)}" alt="${producto.nombre}">
-            <!-- REEMPLAZAR: foto real de ${producto.nombre} -->
+            <img class="producto-imagen" 
+                 src="${rutaImagen}" 
+                 alt="${producto.nombre}" 
+                 onerror="this.src='images/toscano.jpg'">
+            
             <div class="producto-contenido">
                 <div class="producto-header">
                     <span class="producto-emoji">${producto.emoji}</span>
@@ -264,7 +274,7 @@ function seleccionarCategoria(categoriaId, categorias) {
         productosGrid.appendChild(card);
     });
 
-    // Scroll suave
+    // Scroll suave al cambiar de categoría
     productosGrid.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
