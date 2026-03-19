@@ -315,6 +315,7 @@ function agregarAlCarrito(id, nombre, precio) {
 
 function actualizarCarrito() {
     carritoBadge.textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    actualizarBadge()
     renderizarCarrito();
 }
 

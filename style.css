@@ -1158,3 +1158,17 @@ select{
     border: 2px solid var(--color-accent); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
+
+/* Forzar que los botones vuelvan a su color original y no se queden café */
+.btn-cantidad:focus, 
+.btn-eliminar:focus,
+.btn-agregar:focus {
+    outline: none;
+    background-color: var(--color-accent) !important;
+    color: var(--color-primary) !important;
+}
+
+/* Si usas la animación de "Agregado" (verde), esto asegura que al terminar vuelva al naranja */
+.btn-agregar {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
