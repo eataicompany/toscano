@@ -323,7 +323,7 @@ main {
 }
 
 .producto-emoji {
-    font-size: 1.5rem;
+    font-size: 1rem;
     flex-shrink: 0;
 }
 
@@ -338,12 +338,12 @@ main {
 .producto-precio {
     color: var(--color-dorado);
     font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
 }
 
 .ingredientes-seccion {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.1rem;
 }
 
 .btn-ingredientes{
@@ -364,7 +364,7 @@ main {
 
     font-size:0.85rem;
 
-    margin-bottom:0.75rem;
+    margin-bottom:0.1rem;
 
     transition:0.25s;
 
@@ -383,7 +383,7 @@ main {
     border-left:3px solid #d4a373;
     padding:10px;
     border-radius:8px;
-    margin-bottom:0.75rem;
+    margin-bottom:0.1rem;
     font-size:14px;
     color:#fefae0;
     line-height:1.5;
@@ -409,7 +409,7 @@ main {
 
 .btn-agregar{
 
-    margin-top:15px;
+    margin-top:1 !important;
     padding:10px 16px;
     border-radius:10px;
     border: none;
